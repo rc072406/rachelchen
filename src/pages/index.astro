@@ -1,0 +1,91 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+    <main class="container">
+        <section class="fade-section">
+            <h1 class="large-text">Hello, I am Rachel</h1>
+        </section>
+
+        <section class="fade-section">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </section>
+
+        <section class="fade-section">
+            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    .container {
+       
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .fade-section {
+        height: 100vh; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        opacity: 0.1; 
+    }
+
+    .large-text {
+        font-size: 4rem;
+        font-weight: 700;
+        letter-spacing: -0.02em; 
+        margin: 0;
+    }
+
+    p {
+        font-size: 1.5rem;
+        line-height: 1.6;
+        font-weight: 400;
+        margin: 0;
+    }
+</style>
+
+<script>
+    import { gsap } from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+ 
+    gsap.registerPlugin(ScrollTrigger);
+
+
+    const sections = gsap.utils.toArray('.fade-section');
+
+    sections.forEach((section) => {
+        
+        gsap.to(section, {
+            scrollTrigger: {
+                trigger: section,
+                start: "top 80%", 
+                end: "center center", 
+                scrub: true, 
+            },
+            opacity: 1,
+            y: -30, 
+            ease: "none"
+        });
+
+  
+        gsap.to(section, {
+            scrollTrigger: {
+                trigger: section,
+                start: "center center", 
+                end: "bottom 20%", 
+                scrub: true,
+            },
+            opacity: 0,
+            y: -60, 
+            ease: "none"
+        });
+    });
+</script>

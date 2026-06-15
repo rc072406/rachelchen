@@ -84,7 +84,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             scrollTrigger: {
                 trigger: section,
                 start: "top 90%",     
-                end: "top 30%",       
+                end: "top 40%",      
                 scrub: true, 
             },
             opacity: 1,
@@ -93,12 +93,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             ease: "none"
         });
 
-      
+       
         gsap.to(section, {
             scrollTrigger: {
                 trigger: section,
-                start: "top 10%",    
-                end: "bottom 10%",    
+                start: "top -10%",    
+                end: "bottom 0%",    
                 scrub: true,
             },
             opacity: 0,

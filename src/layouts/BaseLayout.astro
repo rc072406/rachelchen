@@ -1,0 +1,35 @@
+---
+// src/layouts/BaseLayout.astro
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rachel's Portfolio</title>
+    
+    <link rel="preconnect" href="https://rsms.me/">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    
+    <style is:global>
+   
+        :root {
+            font-family: Inter, sans-serif;
+            font-feature-settings: 'liga' 1, 'calt' 1; 
+            background-color: #ffffff; 
+            color: #000000; 
+        }
+        @supports (font-variation-settings: normal) {
+            :root { font-family: InterVariable, sans-serif; }
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; 
+        }
+    </style>
+</head>
+<body>
+    <slot />
+</body>
+</html>

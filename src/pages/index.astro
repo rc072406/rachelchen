@@ -32,7 +32,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  
 
 
     .container {
@@ -50,7 +49,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         opacity: 0; 
         transform-origin: center center;
         
-        will-change: transform, opacity, filter;
+        will-change: transform, opacity;
         backface-visibility: hidden; 
         transform: translateZ(0); 
         perspective: 1000px; 
@@ -59,18 +58,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .large-text {
         font-size: 4.5rem;
         font-weight: 700;
-        letter-spacing: 0.2em; 
+        letter-spacing: -0.02em; 
         margin: 0;
-        color: #000000;
     }
 
     p {
         font-size: 1.65rem;
         line-height: 1.6;
         font-weight: 400;
-        letter-spacing: 0.15em; 
         margin: 0;
-        color: #111111; 
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -85,44 +81,37 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     const sections = gsap.utils.toArray('.fade-section');
 
     sections.forEach((section) => {
-    
-        gsap.set(section, { 
-            opacity: 0, 
-            y: 40, 
-            filter: "blur(15px)",
-            letterSpacing: "0.25em"
-        });
+      
+        gsap.set(section, { opacity: 0, y: 40, scale: 0.95 });
 
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: section,
                 start: "top 85%",      
                 end: "bottom 15%",     
-                scrub: 1.6,            
+                scrub: 1.5,           
             }
         });
 
-   
+      
         tl.to(section, {
             opacity: 1,
             y: 0,
-            filter: "blur(0px)",       
-            letterSpacing: "-0.01em",  
+            scale: 1,
             ease: "power2.out",
-            duration: 1.5
+            duration: 1
         })
-       
+    
         .to(section, {
-            duration: 2 
+            duration: 1.5 
         })
-      
+        
         .to(section, {
             opacity: 0,
             y: -40,
-            filter: "blur(15px)",      
-            letterSpacing: "0.1em",    
+            scale: 0.85,           
             ease: "power2.in",
-            duration: 1.5
+            duration: 1
         });
     });
 </script>

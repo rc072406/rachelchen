@@ -27,9 +27,33 @@
             padding: 0;
             overflow-x: hidden; 
         }
+.main-footer {
+		display: flex;
+		justify-content: space-between;
+		padding: 2rem 0;
+		font-size: 0.75rem;
+		border-top: 1px solid var(--black);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+@media (max-width: 768px) {
+		
+		.main-footer {
+			flex-direction: column;
+			gap: 1rem;
+		}
+	}
+
     </style>
 </head>
 <body>
     <slot />
+<footer class="main-footer">
+				<p>© Rachel Chen 2026</p>
+				<div class="status-indicator">Available for projects</div>
+           <a href="">  <p>About</p></a>
+             <a href=""><p>Work</p></a>
+			</footer>
 </body>
+
 </html>

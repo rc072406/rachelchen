@@ -1,0 +1,37 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  width?: string;
+  initialX?: string;
+  initialY?: string;
+}
+const { id, title, width = "400px", initialX = "25%", initialY = "20%" } = Astro.props;
+---
+
+<div 
+  id={id} 
+  class="retro-window retro-outset hidden fixed z-10 flex flex-col p-1 select-none" 
+  style={`width: ${width}; left: ${initialX}; top: ${initialY};`}
+>
+  <div class="title-bar flex items-center justify-between p-1 pl-2 cursor-move select-none">
+    <span class="text-sm font-bold tracking-wide">{title}</span>
+    <button class="close-btn retro-outset bg-[#dfdfdf] text-black font-bold text-xs px-2 py-0.5 border hover:bg-gray-300 active:border-inset">
+      ✕
+    </button>
+  </div>
+
+  <div class="window-body bg-[#fff] m-1 p-4 overflow-y-auto flex-1 text-black font-sans text-sm min-h-[150px]">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .retro-window {
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+  }
+  .close-btn {
+
+    border-radius: 2px;
+  }
+</style>

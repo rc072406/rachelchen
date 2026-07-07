@@ -1,0 +1,55 @@
+---
+---
+<script>
+  function initScrollReveal() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+          
+            entry.target.classList.add('reveal-visible');
+          
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1, 
+        rootMargin: '0px 0px -50px 0px', 
+      }
+    );
+
+   
+    const targets = document.querySelectorAll('.reveal');
+    targets.forEach((target) => observer.observe(target));
+  }
+
+
+  document.addEventListener('astro:page-load', initScrollReveal);
+</script>
+
+<style is:global>
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+
+
+  .reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+</style>

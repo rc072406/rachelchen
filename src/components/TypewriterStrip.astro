@@ -7,39 +7,45 @@
 </div>
 
 <script>
-	const typewriterText = document.querySelector('.typewriter-text');
-	const phrases = ["Do you think you're better off alone?", "What you lack is this", "Thought you'd like it"];
-	let phraseIndex = 0;
-	let letterIndex = 0;
-	let isDeleting = false;
 
-	function playTypewriter() {
-		if (!typewriterText) return;
-		const currentPhrase = phrases[phraseIndex];
+	function initTypewriter() {
+		const typewriterText = document.querySelector('.typewriter-text');
+		const phrases = ["Do you think you're better off alone?", "What you lack is this", "Thought you'd like it"];
+		let phraseIndex = 0;
+		let letterIndex = 0;
+		let isDeleting = false;
 
-		if (isDeleting) {
-			typewriterText.textContent = currentPhrase.substring(0, letterIndex - 1);
-			letterIndex--;
-		} else {
-			typewriterText.textContent = currentPhrase.substring(0, letterIndex + 1);
-			letterIndex++;
+		function playTypewriter() {
+			if (!typewriterText) return;
+			const currentPhrase = phrases[phraseIndex];
+
+			if (isDeleting) {
+				typewriterText.textContent = currentPhrase.substring(0, letterIndex - 1);
+				letterIndex--;
+			} else {
+				typewriterText.textContent = currentPhrase.substring(0, letterIndex + 1);
+				letterIndex++;
+			}
+
+			let typeSpeed = isDeleting ? 40 : 80;
+
+			if (!isDeleting && letterIndex === currentPhrase.length) {
+				typeSpeed = 2500; 
+				isDeleting = true;
+			} else if (isDeleting && letterIndex === 0) {
+				isDeleting = false;
+				phraseIndex = (phraseIndex + 1) % phrases.length;
+				typeSpeed = 600; 
+			}
+
+			setTimeout(playTypewriter, typeSpeed);
 		}
-
-		let typeSpeed = isDeleting ? 40 : 80;
-
-		if (!isDeleting && letterIndex === currentPhrase.length) {
-			typeSpeed = 2500; 
-			isDeleting = true;
-		} else if (isDeleting && letterIndex === 0) {
-			isDeleting = false;
-			phraseIndex = (phraseIndex + 1) % phrases.length;
-			typeSpeed = 600; 
-		}
-
-		setTimeout(playTypewriter, typeSpeed);
+		
+		playTypewriter();
 	}
 	
-	document.addEventListener('DOMContentLoaded', playTypewriter);
+	
+	document.addEventListener('astro:page-load', initTypewriter);
 </script>
 
 <style>

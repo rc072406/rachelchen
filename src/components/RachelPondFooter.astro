@@ -1,0 +1,160 @@
+---
+---
+<footer class="rc-reveal-footer" id="interactive-banner">
+	<canvas id="canvas" class="water-canvas"></canvas>
+</footer>
+
+<script>
+	import { gsap } from 'gsap';
+	import * as PIXI from 'pixi.js';
+
+	const banner = document.getElementById('interactive-banner');
+	const canvas = document.querySelector("#canvas") as HTMLCanvasElement;
+
+	if (banner && canvas) {
+		const width = banner.clientWidth;
+		const height = banner.clientHeight;
+
+		const app = new PIXI.Application({
+			view: canvas,
+			width: width,
+			height: height,
+			backgroundAlpha: 0,
+			resolution: Math.min(window.devicePixelRatio || 1, 2),
+			autoDensity: true
+		});
+
+		async function initWaterEffect() {
+			try {
+				const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, ''); 
+
+				const [waterTexture, displacementTexture, rippleTexture] = await Promise.all([
+					PIXI.Assets.load(`${baseUrl}/images/rachelpond.webp`),
+					PIXI.Assets.load(`${baseUrl}/images/displacement.jpg`),
+					PIXI.Assets.load(`${baseUrl}/images/ripple.png`)
+				]);
+				
+				const container = new PIXI.Container();
+				app.stage.addChild(container);
+
+				const bg = new PIXI.Sprite(waterTexture);
+				bg.anchor.set(0.5);
+				bg.position.set(width / 2, height / 2);
+				
+				const resizeBg = () => {
+					const w = banner.clientWidth;
+					const h = banner.clientHeight;
+					const bgRatio = bg.texture.width / bg.texture.height;
+					const bannerRatio = w / h;
+
+					if (bannerRatio > bgRatio) {
+						bg.width = w;
+						bg.height = w / bgRatio;
+					} else {
+						bg.height = h;
+						bg.width = h * bgRatio;
+					}
+				};
+
+				resizeBg();
+				container.addChild(bg);
+
+				const ripples: PIXI.Sprite[] = [];
+				const filters: PIXI.Filter[] = [];
+
+				const displacementSprite = new PIXI.Sprite(displacementTexture);
+				if (displacementSprite.texture.baseTexture) {
+					displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+				}
+				
+				displacementSprite.scale.set(1);
+				displacementSprite.anchor.set(0);
+				app.stage.addChild(displacementSprite);
+
+				const displacementFilter = new PIXI.filters.DisplacementFilter(displacementSprite);
+				displacementFilter.scale.x = 10;
+				displacementFilter.scale.y = 10;
+				filters.push(displacementFilter);
+
+				for (let i = 0; i < 10; i++) {
+					const ripple = new PIXI.Sprite(rippleTexture);
+					ripple.anchor.set(0.5);
+					ripple.scale.set(0);
+					app.stage.addChild(ripple);
+					
+					const filter = new PIXI.filters.DisplacementFilter(ripple);
+					filters.push(filter);
+					ripples.push(ripple);
+				}
+
+				app.stage.filters = filters;
+
+				gsap.to(displacementSprite.anchor, {
+					y: "-2",
+					x: "-1",
+					duration: 44,
+					ease: "none",
+					repeat: -1
+				});
+
+				let rippleIndex = -1;
+				let lastTargetTime = 0;
+
+				banner.addEventListener('pointermove', function(ev) {
+					const now = performance.now();
+					if (now - lastTargetTime < 80) return; 
+					lastTargetTime = now;
+
+					rippleIndex = (rippleIndex + 1) % 10;
+					
+					const rect = canvas.getBoundingClientRect();
+					const x = ev.clientX - rect.left;
+					const y = ev.clientY - rect.top;
+					
+					ripples[rippleIndex].position.set(x, y);
+					
+					gsap.killTweensOf(ripples[rippleIndex].scale);
+					gsap.killTweensOf(filters[rippleIndex + 1].scale);
+					
+					gsap.fromTo(ripples[rippleIndex].scale, { x: 0.1, y: 0.1 }, { x: 1.5, y: 1.5, duration: 4, ease: "power1.out" });
+					gsap.fromTo(filters[rippleIndex + 1].scale, { x: 50, y: 50 }, { x: 0, y: 0, duration: 4, ease: "power1.out" });
+				}, { passive: true });
+
+				window.addEventListener('resize', () => {
+					if (!banner || !canvas) return;
+					const w = banner.clientWidth;
+					const h = banner.clientHeight;
+					app.renderer.resize(w, h);
+					bg.position.set(w / 2, h / 2);
+					resizeBg();
+				});
+
+			} catch (error) {
+				console.error(error);
+			}
+		}
+
+		initWaterEffect();
+	}
+</script>
+
+<style>
+	.rc-reveal-footer {
+		position: sticky;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh; 
+		z-index: 1; 
+		overflow: hidden;
+		background-color: #000000;
+	}
+
+	.water-canvas {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		pointer-events: auto; 
+	}
+</style>

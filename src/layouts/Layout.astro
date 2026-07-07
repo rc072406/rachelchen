@@ -24,9 +24,9 @@ import { ClientRouter } from 'astro:transitions';
 	<body>
 		<nav class="site-nav">
 			<div class="nav-container">
-                 	<a href="/index" class="nav-link">Home</a>
-				<a href="/team" class="nav-link">The Team</a>
-				<a href="/contact" class="nav-link">Contact</a>
+                 	<a href={import.meta.env.BASE_URL} class="nav-link">Home</a>
+				<a href={`${import.meta.env.BASE_URL}/team`} class="nav-link">The Team</a>
+				<a href={`${import.meta.env.BASE_URL}/contact`} class="nav-link">Contact</a>
 			</div>
 		</nav>
 

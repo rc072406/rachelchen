@@ -1,0 +1,212 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RachelPondFooter from '../components/RachelPondFooter.astro';
+import dogImg from '../../public/images/monte2.webp';
+---
+
+<Layout title="Contact | Rachel's Pond">
+	
+	<main class="main-site-content">
+		
+		<section class="contact-section">
+			<div class="content-box" transition:animate="fade">
+				<h1>Get in Touch</h1>
+				<p class="subtitle">Have a project in mind or just want to say hi to the ducks? Drop a line below.</p>
+				
+				<form action="https://api.web3forms.com/submit" method="POST" class="contact-form">
+					
+					<input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+					
+					<div class="form-group">
+						<label for="name">Name</label>
+						<input type="text" id="name" name="name" required placeholder="Your name" />
+					</div>
+
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email" required placeholder="your.email@example.com" />
+					</div>
+
+					<div class="form-group">
+						<label for="message">Message</label>
+						<textarea id="message" name="message" rows="6" required placeholder="Tell me about your dreams or ideas..."></textarea>
+					</div>
+
+					<button type="submit" class="submit-btn">Send Message</button>
+				</form>
+			</div>
+		</section>
+
+		<section class="photo-section">
+			<div class="content-box photo-layout">
+				<div class="photo-wrapper">
+					<img src={dogImg.src} alt="Monte" class="profile-photo" />
+				</div>
+				<div class="photo-caption">
+					<h3>Behind the Pond</h3>
+					<p>Creating digital experiences from a desk full of notebooks and coffee cups. Let's make something incredible together.</p>
+				</div>
+			</div>
+		</section>
+		<TypewriterStrip />
+	</main>
+
+	<RachelPondFooter />
+
+</Layout>
+
+<style>
+	.main-site-content {
+		position: relative;
+		z-index: 2; 
+		background: #ffffff; 
+		color: #111111;
+		min-height: 100vh;
+		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); 
+	}
+
+	.content-box {
+		max-width: 1100px;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	section {
+		padding: 8rem 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+
+	.contact-section {
+		min-height: 80vh;
+		background: #fdfdfd;
+	}
+
+	.contact-section h1 {
+		font-size: clamp(2.5rem, 6vw, 4.5rem);
+		font-weight: 400;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+		margin-bottom: 1.5rem;
+	}
+
+	.subtitle {
+		font-size: clamp(1.1rem, 2vw, 1.5rem);
+		color: #666;
+		max-width: 600px;
+		margin-bottom: 4rem;
+	}
+
+	.contact-form {
+		max-width: 600px;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.form-group {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	.form-group label {
+		font-size: 0.9rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: #555;
+		font-weight: 500;
+	}
+
+	.form-group input,
+	.form-group textarea {
+		width: 100%;
+		padding: 1rem;
+		background: #f7f7f7;
+		border: 1px solid #e0e0e0;
+		font-family: inherit;
+		font-size: 1rem;
+		color: #111111;
+		transition: border-color 0.3s ease, background 0.3s ease;
+	}
+
+	.form-group input:focus,
+	.form-group textarea:focus {
+		outline: none;
+		border-color: #111111;
+		background: #ffffff;
+	}
+
+	.submit-btn {
+		align-self: flex-start;
+		background: #111111;
+		color: #ffffff;
+		padding: 1rem 2.5rem;
+		border: none;
+		font-size: 1rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition: background 0.3s ease, transform 0.2s ease;
+	}
+
+	.submit-btn:hover {
+		background: #333333;
+		transform: translateY(-2px);
+	}
+
+
+	.photo-section {
+		background: #111111;
+		color: #ffffff;
+		border-top: 1px solid #222222;
+		border-bottom: 1px solid #222222;
+	}
+
+	.photo-layout {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 4rem;
+		align-items: center;
+	}
+
+	.photo-wrapper {
+		width: 100%;
+		height: 450px;
+		background: #222222; 
+		overflow: hidden;
+	}
+
+	.profile-photo {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: filter 0.5s ease;
+	}
+
+
+
+	.photo-caption h3 {
+		font-size: 2rem;
+		font-weight: 400;
+		margin-bottom: 1.5rem;
+		letter-spacing: -0.02em;
+	}
+
+	.photo-caption p {
+		font-size: 1.25rem;
+		line-height: 1.7;
+		color: #cccccc;
+		max-width: 500px;
+	}
+
+	@media (max-width: 768px) {
+		.photo-layout {
+			gap: 2rem;
+		}
+		.photo-wrapper {
+			height: 350px;
+		}
+	}
+</style>

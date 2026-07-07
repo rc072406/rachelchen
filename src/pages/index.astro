@@ -6,16 +6,16 @@ import RachelPondFooter from '../components/RachelPondFooter.astro';
 
 <Layout title="Rachel's Pond | Creative Portfolio">
 	
-	<main class="main-site-content">
+	<main class="main-site-content" transition:animate="fade">
 		
 		<section class="hero-section">
-			<div class="content-box" transition:animate="fade">
+			<div class="content-box reveal" >
 				<h1 >Rachel's Pond</h1>
 				<p>Welcome to the pond where me and my team of ducks help bring <em>your</em> dreams to life.</p>
 			</div>
 		</section>
 <section class="about-section">
-	<div class="content-box">
+	<div class="content-box reveal">
 		<p class="about-text" >
 		Filler. 
 		</p>
@@ -23,7 +23,7 @@ import RachelPondFooter from '../components/RachelPondFooter.astro';
 </section>
 
 		<section class="work-section">
-			<div class="content-box">
+			<div class="content-box reveal">
 				<h2>Selected Archive</h2>
 				<div class="placeholder-grid">
 					<div class="grid-item">Project One</div>

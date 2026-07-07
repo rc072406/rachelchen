@@ -11,24 +11,42 @@
 	import * as PIXI from 'pixi.js';
 
 	const banner = document.getElementById('interactive-banner');
-
 	const canvas = document.getElementById("water-canvas") as HTMLCanvasElement;
 
 	if (banner && canvas) {
 		const width = window.innerWidth;
 		const height = window.innerHeight;
 
-		const app = new PIXI.Application({
-			view: canvas,
-			width: width,
-			height: height,
-			backgroundAlpha: 0,
-			resolution: Math.min(window.devicePixelRatio || 1, 2),
-			autoDensity: true
-		});
+	
+		const app = new PIXI.Application();
 
 		async function initWaterEffect() {
 			try {
+			
+				if ('init' in app && typeof (app as any).init === 'function') {
+					await (app as any).init({
+						canvas: canvas,
+						width: width,
+						height: height,
+						backgroundAlpha: 0,
+						resolution: Math.min(window.devicePixelRatio || 1, 2),
+						autoDensity: true
+					});
+				} else {
+					// PixiJS v7 fallback fallback initialization
+					await (app as any).init?.() || Object.assign(app, {
+						view: canvas,
+						renderer: (app as any).renderer || new (PIXI as any).Renderer({
+							view: canvas,
+							width: width,
+							height: height,
+							backgroundAlpha: 0,
+							resolution: Math.min(window.devicePixelRatio || 1, 2),
+							autoDensity: true
+						})
+					});
+				}
+
 				const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, ''); 
 
 				const [waterTexture, displacementTexture, rippleTexture] = await Promise.all([
@@ -63,12 +81,15 @@
 				container.addChild(bg);
 
 				const ripples: PIXI.Sprite[] = [];
-				const filters: PIXI.Filter[] = [];
+				const filters: any[] = [];
 
 				const displacementSprite = new PIXI.Sprite(displacementTexture);
 				
-				if (displacementSprite.texture.baseTexture) {
-					displacementSprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+			
+				if (displacementTexture.baseTexture) {
+					displacementTexture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+				} else if ((displacementTexture as any).source) {
+					(displacementTexture as any).source.addressMode = 'repeat';
 				}
 				
 				displacementSprite.scale.set(1);
@@ -132,7 +153,7 @@
 				});
 
 			} catch (error) {
-				console.error(error);
+				console.error("PixiJS Error: ", error);
 			}
 		}
 
@@ -143,13 +164,13 @@
 <style>
 
 	.full-page-water-system {
-		position: fixed; 
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100vw;
 		height: 100vh;
-		z-index: -1; 
-		pointer-events: none; 
+		z-index: -1;
+		pointer-events: none;
 	}
 
 	.water-canvas {

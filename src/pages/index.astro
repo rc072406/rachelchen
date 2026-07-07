@@ -1,37 +1,91 @@
 ---
-// src/pages/index.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout>
-    <main class="container">
-        <section class="fade-section">
-            <h1 class="large-text">Hello, I am Rachel</h1>
-        </section>
+<BaseLayout title="Rachel | Creative Experiences">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500&family=STIX+Two+Text:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
 
-        <section class="fade-section">
-            <p class="large-text">I don't just build websites. I create emotional experiences.</p>
-        </section>
-
-        <section class="fade-section">
-            <p class="large-text">Whether I'm taking you to space or a futuristic pink city...or even your therapist's office, you will be immersed.</p>
-        </section>
-        
-        <section class="fade-section">
-            <p class="large-text">Because it's not just websites I'm making...</p>
-        </section>
-        
-        <section class="fade-section">
-            <p class="large-text">I'm architecting visual and emotional stories that transcend beyond basic user interface and user experience.</p>
-        </section>
-        
-        <section class="fade-section">
-            <p class="large-text">So join me, and turn your website into an intergalactic rollercoaster of feelings.</p>
-        </section>
-    </main>
+	<main class="hero-container">
+		<div class="hero-content">
+			<h1 class="serif-title">
+				I'm Rachel. <br />
+				<span class="italic-sub">I create experiences.</span>
+			</h1>
+			
+			<div class="nav-links">
+				<a href="#work" class="nav-item">Selected Work</a>
+				<a href="#about" class="nav-item">About</a>
+				<a href="mailto:email@domain.com" class="nav-item">Contact</a>
+			</div>
+		</div>
+	</main>
 </BaseLayout>
 
+<style>
+	.hero-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 100vh;
+		width: 100%;
+		padding: 2rem;
+		box-sizing: border-box;
+	}
 
+	.hero-content {
+		text-align: center;
+		max-width: 800px;
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+	}
 
+	.serif-title {
+		font-family: "STIX Two Text", "Didot", "Times New Roman", serif;
+		font-size: clamp(2.5rem, 6vw, 4.5rem);
+		font-weight: 400;
+		line-height: 1.2;
+		color: #ffffff;
+		letter-spacing: -0.01em;
+		margin: 0;
+		text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+	}
 
+	.italic-sub {
+		font-style: italic;
+		font-weight: 400;
+		opacity: 0.95;
+	}
 
+	.nav-links {
+		display: flex;
+		gap: 2.5rem;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.nav-item {
+		font-family: "Plus Jakarta Sans", sans-serif;
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		color: rgba(255, 255, 255, 0.7);
+		text-decoration: none;
+		transition: color 0.4s ease, transform 0.4s ease;
+		font-weight: 400;
+	}
+
+	.nav-item:hover {
+		color: #ffffff;
+		transform: translateY(-1px);
+	}
+
+	@media (max-width: 600px) {
+		.nav-links {
+			flex-direction: column;
+			gap: 1.5rem;
+		}
+	}
+</style>

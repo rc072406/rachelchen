@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TypewriterStrip from '../components/TypewriterStrip.astro';
+import RachelPondFooter from '../components/RachelPondFooter.astro';
+---
+
+<Layout title="Rachel's Pond | Creative Portfolio">
+	
+	<main class="main-site-content">
+		
+		<section class="hero-section">
+			<div class="content-box">
+				<h1>Rachel's Pond</h1>
+				<p>Welcome to the pond where me and my team of ducks make you sad.</p>
+			</div>
+		</section>
+
+		<section class="work-section">
+			<div class="content-box">
+				<h2>Selected Archive</h2>
+				<div class="placeholder-grid">
+					<div class="grid-item">Project One</div>
+					<div class="grid-item">Project Two</div>
+					<div class="grid-item">Project Three</div>
+				</div>
+			</div>
+		</section>
+
+		<TypewriterStrip />
+		
+	</main>
+
+	<RachelPondFooter />
+
+</Layout>
+
+<style>
+
+	.main-site-content {
+		position: relative;
+		z-index: 2; 
+		background: #ffffff; 
+		color: #111111;
+		min-height: 100vh;
+		
+
+		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); 
+	}
+
+
+	.content-box {
+		max-width: 1100px;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	section {
+		padding: 8rem 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.hero-section {
+		min-height: 80vh;
+		background: #fdfdfd;
+	}
+
+	.hero-section h1 {
+		font-size: clamp(2.5rem, 6vw, 4.5rem);
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+		margin-bottom: 1.5rem;
+	}
+
+	.hero-section p {
+		font-size: clamp(1.1rem, 2vw, 1.5rem);
+		color: #666;
+		max-width: 600px;
+	}
+
+	.work-section {
+		background: #f7f7f7;
+		border-top: 1px solid #eaeaea;
+	}
+
+	.work-section h2 {
+		font-size: 2rem;
+		margin-bottom: 3rem;
+		letter-spacing: -0.02em;
+	}
+
+	.placeholder-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 2rem;
+	}
+
+	.grid-item {
+		background: #ffffff;
+		border: 1px solid #e0e0e0;
+		height: 400px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 500;
+		color: #888;
+		transition: transform 0.3s ease;
+	}
+
+	.grid-item:hover {
+		transform: translateY(-4px);
+		color: #111;
+	}
+</style>

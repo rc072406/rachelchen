@@ -34,19 +34,18 @@ import RachelPondFooter from '../components/RachelPondFooter.astro';
 
 </Layout>
 
-<style>
+style>
 
 	.main-site-content {
 		position: relative;
 		z-index: 2; 
-		background: #ffffff; 
-		color: #111111;
+
+		background: linear-gradient(45deg, #cebdf8, #e2dbf8);
+
+		color: #1e1135;
 		min-height: 100vh;
-		
-
-		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); 
+		box-shadow: 0 15px 40px rgba(120, 90, 180, 0.15); 
 	}
-
 
 	.content-box {
 		max-width: 1100px;
@@ -63,7 +62,8 @@ import RachelPondFooter from '../components/RachelPondFooter.astro';
 
 	.hero-section {
 		min-height: 80vh;
-		background: #fdfdfd;
+	
+		background: linear-gradient(135deg, #e3d5fa 0%, #fbe3eb 50%, #dcd0fd 100%);
 	}
 
 	.hero-section h1 {
@@ -72,23 +72,28 @@ import RachelPondFooter from '../components/RachelPondFooter.astro';
 		letter-spacing: -0.03em;
 		line-height: 1.1;
 		margin-bottom: 1.5rem;
+
+		color: #1a0f30;
 	}
 
 	.hero-section p {
 		font-size: clamp(1.1rem, 2vw, 1.5rem);
-		color: #666;
+		
+		color: #5d5274;
 		max-width: 600px;
 	}
 
 	.work-section {
-		background: #f7f7f7;
-		border-top: 1px solid #eaeaea;
+		
+		background: #f1ebfc;
+		border-top: 1px solid rgba(255, 255, 255, 0.4);
 	}
 
 	.work-section h2 {
 		font-size: 2rem;
 		margin-bottom: 3rem;
 		letter-spacing: -0.02em;
+		color: #1a0f30;
 	}
 
 	.placeholder-grid {
@@ -98,19 +103,27 @@ import RachelPondFooter from '../components/RachelPondFooter.astro';
 	}
 
 	.grid-item {
-		background: #ffffff;
-		border: 1px solid #e0e0e0;
+	
+		background: rgba(255, 255, 255, 0.65);
+		border: 1px solid rgba(199, 178, 240, 0.4);
 		height: 400px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		font-weight: 500;
-		color: #888;
-		transition: transform 0.3s ease;
+	
+		color: #8c73be;
+		border-radius: 4px;
+		backdrop-filter: blur(5px);
+		transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 	}
 
 	.grid-item:hover {
 		transform: translateY(-4px);
-		color: #111;
+	
+		background: rgba(255, 255, 255, 0.9);
+		color: #553493;
+		border-color: rgba(140, 115, 190, 0.6);
+		box-shadow: 0 10px 25px rgba(140, 115, 190, 0.15);
 	}
 </style>

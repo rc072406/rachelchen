@@ -1,0 +1,207 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RachelPondFooter from '../components/RachelPondFooter.astro';
+
+
+import rachelImg from '../images/rachel-placeholder.jpg';
+import dogImg from '../images/IMG_20220522_090906873_MP edited.jpg';
+import ducksImg from '../images/rachelpond.webp';
+---
+
+<Layout title="The Team | Rachel's Pond">
+	
+	<main class="main-site-content" transition:animate="fade">
+		
+		<section class="team-hero">
+			<div class="content-box">
+				<h1>The Crew Behind the Pond</h1>
+				<p>It takes a village...or at least a human, a loyal companion, and a highly organized flock...to make things happen.</p>
+			</div>
+		</section>
+
+		<section class="member-section rachel-member">
+			<div class="content-box profile-grid">
+				<div class="profile-text">
+					<h2>Rachel</h2>
+					<p class="role-tag">Founder & Creative Lead</p>
+					<p>Hello!</p>
+				</div>
+				<div class="profile-image-container">
+					<img src={rachelImg.src} alt="Rachel" class="profile-img" />
+				</div>
+			</div>
+		</section>
+
+		<section class="member-section dark-member">
+			<div class="content-box profile-grid reverse-grid">
+				<div class="profile-text">
+					<h2>Monte</h2>
+					<p class="role-tag">Chief Morale Officer and Head Developer</p>
+					<p>Guten Tag! Ich bin ein Zwergpinscher aus München, Deutschland, und meine Familie ist vor ein paar Generationen nach Südbrasilien gezogen. Ich bin in die USA gezogen, nachdem ich ein Jobangebot erhalten hatte, um Chefentwickler bei Rachel's Pond zu werden. Ich freue mich so sehr, hier zu sein und mit euch allen zu erschaffen. </p>
+				</div>
+				<div class="profile-image-container">
+					<img src={dogImg.src} alt="Monte" class="profile-img" />
+				</div>
+			</div>
+		</section>
+
+		<section class="member-section ducks-member">
+			<div class="content-box profile-grid">
+				<div class="profile-text">
+					<h2>The Ducks</h2>
+					<p class="role-tag">Development & Support Flock</p>
+					<p>Hey. We keep things swimming along smoothly and ensure no bugs disrupt the pond ecosystem. Debugging till 2AM, you can count on us. Mandy, Simon, and the rest of the flock--out!</p>
+				</div>
+				<div class="profile-image-container">
+					<img src={ducksImg.src} alt="The Ducks" class="profile-img" />
+				</div>
+			</div>
+		</section>
+		
+	</main>
+
+	<RachelPondFooter />
+
+</Layout>
+
+<style>
+	.main-site-content {
+		position: relative;
+		z-index: 2; 
+		background: #ffffff; 
+		color: #111111;
+		min-height: 100vh;
+		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); 
+	}
+
+	.content-box {
+		max-width: 1100px;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	section {
+		padding: 8rem 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.team-hero {
+		min-height: 50vh;
+		background: #fdfdfd;
+		border-bottom: 1px solid #eaeaea;
+	}
+
+	.team-hero h1 {
+		font-size: clamp(2.5rem, 6vw, 4.5rem);
+		font-weight: 400;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+		margin-bottom: 1.5rem;
+	}
+
+	.team-hero p {
+		font-size: clamp(1.1rem, 2vw, 1.5rem);
+		color: #666;
+		max-width: 600px;
+	}
+
+
+	.member-section {
+		background: #ffffff;
+	}
+
+	.profile-grid {
+		display: grid;
+		grid-template-columns: 1.2fr 1fr;
+		gap: 4rem;
+		align-items: center;
+	}
+
+
+	.reverse-grid {
+		grid-template-columns: 1fr 1.2fr;
+	}
+	.reverse-grid .profile-text {
+		grid-column: 2;
+	}
+	.reverse-grid .profile-image-container {
+		grid-column: 1;
+		grid-row: 1;
+	}
+
+	.profile-text h2 {
+		font-size: clamp(2rem, 4vw, 3rem);
+		font-weight: 400;
+		margin-bottom: 0.5rem;
+		letter-spacing: -0.02em;
+	}
+
+	.role-tag {
+		font-size: 1rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: #888;
+		margin-bottom: 1.5rem;
+	}
+
+	.profile-text p:not(.role-tag) {
+		font-size: 1.2rem;
+		line-height: 1.7;
+		max-width: 550px;
+	}
+
+
+	.profile-image-container {
+		width: 100%;
+		aspect-ratio: 4 / 5; 
+		background: #f0f0f0;
+		overflow: hidden;
+		border: 1px solid #e0e0e0;
+	}
+
+	.profile-img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: filter 0.3s ease;
+	}
+
+	.profile-img:hover {
+		filter: grayscale(0%);
+	}
+
+
+	.dark-member {
+		background: #111111;
+		color: #ffffff;
+		border-top: 1px solid #222222;
+		border-bottom: 1px solid #222222;
+	}
+
+	.dark-member .role-tag {
+		color: #aaa;
+	}
+
+	.dark-member .profile-image-container {
+		border: 1px solid #222222;
+		background: #222222;
+	}
+
+
+	@media (max-width: 768px) {
+		.profile-grid, .reverse-grid {
+			grid-template-columns: 1fr;
+			gap: 2rem;
+		}
+		.reverse-grid .profile-text,
+		.reverse-grid .profile-image-container {
+			grid-column: auto;
+			grid-row: auto;
+		}
+		section {
+			padding: 4rem 1.5rem;
+		}
+	}
+</style>

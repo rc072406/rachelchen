@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import DesktopIcon from '../components/DesktopIcon.astro';
+import Window from '../components/Window.astro';
+import Taskbar from '../components/Taskbar.astro';
+---
+
+<Layout title="Sumner Howells ($CUMNER) Home">
+  <main class="w-screen h-screen overflow-hidden relative bg-[#3a7e58] bg-cover bg-center" style="background-image: url('/path-to-your-bliss-rainbow-wallpaper.jpg');">
+    
+    <header class="w-full bg-[#dfdfdf] border-b border-gray-400 text-black px-4 py-1 flex justify-between text-xs font-mono">
+      <div class="flex gap-4">
+        <span class="font-bold">RACHEL CHEN (R@CH31-LOCK.JSON)</span>
+        <a href="#" class="hover:underline">Home</a>
+        <a href="#" class="hover:underline">Work</a>
+        <a href="#" class="hover:underline">Connect</a>
+        <a href="#" class="hover:underline">Help</a>
+      </div>
+      <div>👽</div>
+    </header>
+
+    <div class="p-6 grid grid-flow-col grid-rows-[repeat(auto-fill,110px)] gap-4 justify-start items-start h-[calc(100vh-80px)]">
+      <DesktopIcon id="win-room" title="" iconUrl="/icons/window.png" />
+      <DesktopIcon id="win-contact" title="Contact" iconUrl="/icons/phone.png" />
+      <DesktopIcon id="win-paint" title="" iconUrl="/icons/paint.png" />
+      <DesktopIcon id="win-baddie" title="" iconUrl="/icons/warning.png" />
+    </div>
+
+    <Window id="win-room" title="Rachel " width="450px">
+      <h2 class="text-xl font-bold mb-2">Welcome to my space!</h2>
+      <p</p>
+    </Window>
+
+    <Window id="win-contact" title="Contact Info" width="300px" initialX="40%" initialY="30%">
+      <p class="font-bold">Email:</p>
+      <p class="mb-2 text-blue-600 underline">hello@example.com</p>
+      <p class="font-bold">Instagram:</p>
+      <p class="text-blue-600 underline"></p>
+    </Window>
+
+    <Window id="win-baddie" title="Message important" width="350px" initialX="50%" initialY="15%">
+      <div class="text-center text-red-600 font-black text-xl mb-2 animate-bounce">
+       YOU DEAD
+      </div>
+      <div class="retro-inset p-2 bg-yellow-100 text-xs font-mono text-black">
+        <ul>
+          <li>• <strong>Impeccable</strong> Vision</li>
+          <li>• Great use of <strong>color</strong></li>
+          <li>• Knows how to have a <strong>good time</strong></li>
+        </ul>
+      </div>
+    </main>
+
+    <Taskbar />
+
+  </main>
+</Layout>
+
+<script>
+
+  const icons = document.querySelectorAll('.desktop-icon');
+  icons.forEach(icon => {
+    icon.addEventListener('click', () => {
+      const targetId = icon.getAttribute('data-opens');
+      const win = document.getElementById(targetId);
+      if (win) {
+        win.classList.remove('hidden');
+      
+        bringToFront(win);
+      }
+    });
+  });
+
+ 
+  const closeButtons = document.querySelectorAll('.close-btn');
+  closeButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const win = (e.target as HTMLElement).closest('.retro-window');
+      if (win) win.classList.add('hidden');
+    });
+  });
+
+
+  let topZIndex = 10;
+  function bringToFront(windowEl: HTMLElement) {
+    topZIndex++;
+    windowEl.style.zIndex = topZIndex.toString();
+  }
+
+  document.querySelectorAll('.retro-window').forEach(win => {
+    win.addEventListener('mousedown', () => bringToFront(win as HTMLElement));
+  });
+
+
+  document.querySelectorAll('.retro-window').forEach(win => {
+    const titleBar = win.querySelector('.title-bar');
+    if (!titleBar) return;
+
+    let isDragging = false;
+    let offsetX = 0, offsetY = 0;
+
+    titleBar.addEventListener('mousedown', (e: any) => {
+      isDragging = true;
+      offsetX = e.clientX - win.getBoundingClientRect().left;
+      offsetY = e.clientY - win.getBoundingClientRect().top;
+      bringToFront(win as HTMLElement);
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      (win as HTMLElement).style.left = `${e.clientX - offsetX}px`;
+      (win as HTMLElement).style.top = `${e.clientY - offsetY}px`;
+    });
+
+    document.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+  });
+</script>

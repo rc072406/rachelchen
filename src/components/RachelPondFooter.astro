@@ -8,14 +8,19 @@
 	import { gsap } from 'gsap';
 	import * as PIXI from 'pixi.js';
 
-	const banner = document.getElementById('interactive-banner');
-	const canvas = document.querySelector("#canvas") as HTMLCanvasElement;
+	let app: PIXI.Application | null = null;
 
-	if (banner && canvas) {
+	function initFooterEffect() {
+		const banner = document.getElementById('interactive-banner');
+		const canvas = document.querySelector("#canvas") as HTMLCanvasElement;
+
+	
+		if (!banner || !canvas || app) return;
+
 		const width = banner.clientWidth;
 		const height = banner.clientHeight;
 
-		const app = new PIXI.Application({
+		app = new PIXI.Application({
 			view: canvas,
 			width: width,
 			height: height,
@@ -34,6 +39,7 @@
 					PIXI.Assets.load(`${baseUrl}/images/ripple.png`)
 				]);
 				
+				if (!app) return; 
 				const container = new PIXI.Container();
 				app.stage.addChild(container);
 
@@ -42,6 +48,7 @@
 				bg.position.set(width / 2, height / 2);
 				
 				const resizeBg = () => {
+					if (!banner) return;
 					const w = banner.clientWidth;
 					const h = banner.clientHeight;
 					const bgRatio = bg.texture.width / bg.texture.height;
@@ -101,6 +108,7 @@
 				let lastTargetTime = 0;
 
 				banner.addEventListener('pointermove', function(ev) {
+					if (!canvas) return;
 					const now = performance.now();
 					if (now - lastTargetTime < 80) return; 
 					lastTargetTime = now;
@@ -121,7 +129,7 @@
 				}, { passive: true });
 
 				window.addEventListener('resize', () => {
-					if (!banner || !canvas) return;
+					if (!banner || !canvas || !app) return;
 					const w = banner.clientWidth;
 					const h = banner.clientHeight;
 					app.renderer.resize(w, h);
@@ -136,6 +144,17 @@
 
 		initWaterEffect();
 	}
+
+
+	document.addEventListener('astro:page-load', initFooterEffect);
+
+
+	document.addEventListener('astro:before-swap', () => {
+		if (app) {
+			app.destroy(true, { children: true, texture: true, baseTexture: true });
+			app = null;
+		}
+	});
 </script>
 
 <style>

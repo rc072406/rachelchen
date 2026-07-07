@@ -7,7 +7,7 @@ import TypewriterStrip from '../components/TypewriterStrip.astro';
 
 <Layout title="Contact | Rachel's Pond">
 	
-	<main class="main-site-content"  transition:animate="fade">
+	<main class="main-site-content" transition:animate="fade">
 		
 		<section class="contact-section">
 			<div class="content-box reveal">
@@ -49,6 +49,12 @@ import TypewriterStrip from '../components/TypewriterStrip.astro';
 				</div>
 			</div>
 		</section>
+
+		<section class="blank-section">
+			<div class="content-box">
+				</div>
+		</section>
+
 		<TypewriterStrip />
 	</main>
 
@@ -78,7 +84,6 @@ import TypewriterStrip from '../components/TypewriterStrip.astro';
 		flex-direction: column;
 		justify-content: center;
 	}
-
 
 	.contact-section {
 		min-height: 80vh;
@@ -157,7 +162,6 @@ import TypewriterStrip from '../components/TypewriterStrip.astro';
 		transform: translateY(-2px);
 	}
 
-
 	.photo-section {
 		background: #111111;
 		color: #ffffff;
@@ -186,8 +190,6 @@ import TypewriterStrip from '../components/TypewriterStrip.astro';
 		transition: filter 0.5s ease;
 	}
 
-
-
 	.photo-caption h3 {
 		font-size: 2rem;
 		font-weight: 400;
@@ -202,12 +204,22 @@ import TypewriterStrip from '../components/TypewriterStrip.astro';
 		max-width: 500px;
 	}
 
+
+	.blank-section {
+		background: #f7f7f7;
+		min-height: 40vh; 
+		border-bottom: 1px solid #eaeaea;
+	}
+
 	@media (max-width: 768px) {
 		.photo-layout {
 			gap: 2rem;
 		}
 		.photo-wrapper {
 			height: 350px;
+		}
+		.blank-section {
+			min-height: 30vh;
 		}
 	}
 </style>

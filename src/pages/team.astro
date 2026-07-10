@@ -5,6 +5,7 @@ import TypewriterStrip from '../components/TypewriterStrip.astro';
 import rachelImg from '../../public/images/rachelchen.webp';
 import dogImg from '../../public/images/monte.webp';
 import ducksImg from '../../public/images/rachelpond.webp';
+import squirrelImg from '../../public/images/juniordev.webp';
 ---
 
 <Layout title="The Team | Rachel's Pond">
@@ -56,6 +57,23 @@ import ducksImg from '../../public/images/rachelpond.webp';
 				</div>
 			</div>
 		</section>
+	<section class="member-section dark-member">
+			<div class="content-box profile-grid reverse-grid">
+				<div class="profile-text reveal">
+					<h2>.....</h2>
+					<p class="role-tag">Junior Development</p>
+					<p>Hi, I am ..... </p>
+				</div>
+				<div class="profile-image-container reveal">
+					<img src={squirrelImg.src} alt="" class="profile-img" />
+				</div>
+			</div>
+		</section>
+<section class="blank-section">
+			<div class="content-box">
+				</div>
+		</section>
+
 		<TypewriterStrip />
 	</main>
 
@@ -187,7 +205,11 @@ import ducksImg from '../../public/images/rachelpond.webp';
 		border: 1px solid #222222;
 		background: #222222;
 	}
-
+.blank-section {
+		background: #f7f7f7;
+		min-height: 40vh; 
+		border-bottom: 1px solid #eaeaea;
+	}
 
 	@media (max-width: 768px) {
 		.profile-grid, .reverse-grid {
@@ -201,6 +223,9 @@ import ducksImg from '../../public/images/rachelpond.webp';
 		}
 		section {
 			padding: 4rem 1.5rem;
+		}
+.blank-section {
+			min-height: 30vh;
 		}
 	}
 </style>

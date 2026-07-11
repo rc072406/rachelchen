@@ -63,10 +63,14 @@
 	}
 
 	.typewriter-box {
-	 font-family: "STIX Two Text", serif;
+		font-family: "STIX Two Text", serif;
 		font-size: 1.25rem;
 		font-weight: 400;
 		letter-spacing: -0.01em;
+		
+	
+		transform: translateZ(0);
+		-webkit-font-smoothing: antialiased;
 	}
 
 	.cursor {
@@ -75,7 +79,8 @@
 		animation: blink 0.8s infinite steps(2, start);
 	}
 
+	
 	@keyframes blink {
-		to { visibility: hidden; }
+		to { opacity: 0; }
 	}
 </style>

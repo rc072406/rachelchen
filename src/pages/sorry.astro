@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TypewriterStrip from '../components/TypewriterStrip.astro';
+import RachelPondFooter from '../components/RachelPondFooter.astro';
+---
+
+<Layout title="Sorry | The Pond">
+	
+	<main class="main-site-content" transition:animate="fade">
+		
+		<section class="hero-section">
+			<div class="content-box reveal" >
+				<h1 >We're Sorry</h1>
+				<p>We prohibit team members from self promotion. If you come across any incidences please <a href={`${import.meta.env.BASE_URL}/contact`} style="text-decoration:none; color: grey; ">report.</a> Thank you for your diligence.</p>
+			</div>
+		</section>
+
+
+
+
+		<TypewriterStrip />
+		
+	</main>
+
+	<RachelPondFooter />
+
+</Layout>
+
+<style>
+
+	.main-site-content {
+		position: relative;
+		z-index: 2; 
+		background: #ffffff; 
+		color: #111111;
+		min-height: 100vh;
+		
+
+		box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5); 
+	}
+
+
+	.content-box {
+		max-width: 1100px;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	section {
+		padding: 8rem 2rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	.hero-section {
+		min-height: 80vh;
+		background: #fdfdfd;
+	}
+
+	.hero-section h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+	  font-weight: 400;
+		letter-spacing: -0.03em;
+		line-height: 1.1;
+		margin-bottom: 1.5rem;
+	}
+
+	.hero-section p {
+		font-size: clamp(1.1rem, 2vw, 1.5rem);
+		color: #666;
+		max-width: 600px;
+	}
+
+
+</style>

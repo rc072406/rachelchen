@@ -36,7 +36,17 @@ Ever dreamed of flying in space or visiting a futuristic pink city? We create dr
 				</div>
 			</div>
 		</section>
-
+<section class="blank-section">
+	<div class="content-box footer-row">
+		<div class="copyright-info">
+			<p>&copy; {new Date().getFullYear()} Rachel's Pond. All rights reserved.</p>
+		</div>
+		<div class="social-links">
+			<a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+			<a href="" target="_blank" rel="noopener noreferrer">Instagram</a>
+		</div>
+	</div>
+</section>
 		<TypewriterStrip />
 		
 	</main>
@@ -137,4 +147,49 @@ Ever dreamed of flying in space or visiting a futuristic pink city? We create dr
 	line-height: 1.7;
 	max-width: 800px;
 }
+.blank-section {
+	background: #f7f7f7;
+	min-height: 20vh; 
+	border-bottom: 1px solid #eaeaea;
+	display: flex;
+	align-items: center;
+}
+
+.footer-row {
+	display: flex;
+	justify-content: space-between; 
+	align-items: center;
+	width: 100%;
+	font-size: 0.95rem;
+	color: #666666;
+}
+
+.social-links {
+	display: flex;
+	gap: 2rem; /
+}
+
+.social-links a {
+	color: #111111;
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+	color: #666666; 
+}
+@media (max-width: 768px) {
+	
+.footer-row {
+		flex-direction: column;
+		gap: 1.5rem;
+		text-align: center;
+		justify-content: center;
+	}
+	
+	.blank-section {
+		min-height: 25vh;
+	}
+	}
 </style>

@@ -25,25 +25,69 @@ Ever dreamed of flying in space or visiting a futuristic pink city? We create dr
 <p>
 	</div>
 </section>
+<section class="work-section">
+    <div class="content-box reveal">
+        <h2>Projects</h2>
+        <div class="projects-list">
+            
+            <!-- Project 1 -->
+            <div class="project-item">
+                <h3>Pink Coding Club</h3>
+                <p>My non-profit coding camp for non-binary youth and girls. Taught through the arts and fashion.</p>
+                <div class="project-links">
+                    <a href="https://pinkcodingclub.com" target="_blank" rel="noopener noreferrer">Website ↗</a>
+                    <a href="https://github.com/rc072406/pinkcodingclub/" target="_blank" rel="noopener noreferrer">Source ↗</a>
+                     <a href="" target="_blank" rel="noopener noreferrer">Thoughts ↗</a>
+                    <div class="badges">
+                        <span class="badge">Astro</span>
+                        <span class="badge">TypeScript</span>
+                    </div>
+                </div>
+            </div>
 
-		<section class="work-section">
-			<div class="content-box reveal">
-				<h2>Selected Archive</h2>
-				<div class="placeholder-grid">
-					<div class="grid-item">Project One</div>
-					<div class="grid-item">Project Two</div>
-					<div class="grid-item">Coming Soon</div>
-				</div>
-			</div>
-		</section>
+            <!-- Project 2 -->
+            <div class="project-item">
+                <h3>Misa Chien's Personal Site</h3>
+                <p>A personal website for entrepreneur Misa Chien.</p>
+                <div class="project-links">
+                    <a href="https://misachien.com" target="_blank" rel="noopener noreferrer">Website ↗</a>
+                    <a href="https://github.com/rc072406/misachien" target="_blank" rel="noopener noreferrer">Source ↗</a>
+                    <a href="" target="_blank" rel="noopener noreferrer">Thoughts ↗</a>
+                    <div class="badges">
+                        <span class="badge">Astro</span>
+                        <span class="badge">Javascript</span>
+                         <a href="" target="_blank" rel="noopener noreferrer">Thoughts ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-item">
+                <h3>Rachel's Education Philosophy</h3>
+                <p></p>
+                <div class="project-links">
+                <a href="" target="_blank" rel="noopener noreferrer">Website ↗</a>
+                    <a href="" target="_blank" rel="noopener noreferrer">Source ↗</a>
+                    <a href="" target="_blank" rel="noopener noreferrer">Thoughts ↗</a>
+                    <div class="badges">
+                        <span class="badge">HTML</span>
+                        <span class="badge">CSS</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+		
 <section class="blank-section">
 	<div class="content-box footer-row">
 		<div class="copyright-info">
 			<p>&copy; {new Date().getFullYear()} Rachel's Pond. All rights reserved.</p>
 		</div>
 		<div class="social-links">
-			<a href="" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-			<a href="" target="_blank" rel="noopener noreferrer">Instagram</a>
+			<a href="https://github.com/rc072406" target="_blank" rel="noopener noreferrer">Github</a>
+			<a href="" target="_blank" rel="noopener noreferrer">I don't have social media</a>
 		</div>
 	</div>
 </section>
@@ -113,22 +157,61 @@ Ever dreamed of flying in space or visiting a futuristic pink city? We create dr
 		letter-spacing: -0.02em;
 	}
 
-	.placeholder-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 2rem;
+.projects-list {
+		display: flex;
+		flex-direction: column;
+		gap: 3.5rem;
+		max-width: 800px;
 	}
 
-	.grid-item {
-		background: #ffffff;
-		border: 1px solid #e0e0e0;
-		height: 400px;
+	.project-item h3 {
+		font-size: 1.5rem;
+		font-weight: 500;
+		margin-bottom: 0.75rem;
+		color: #111111;
+		letter-spacing: -0.01em;
+	}
+
+	.project-item p {
+		font-size: 1.1rem;
+		color: #555555;
+		line-height: 1.6;
+		margin-bottom: 1.25rem;
+	}
+
+	.project-links {
 		display: flex;
 		align-items: center;
-		justify-content: center;
+		flex-wrap: wrap;
+		gap: 1.25rem;
+	}
+
+	.project-links a {
+		color: #3b3086; 
+		text-decoration: none;
 		font-weight: 500;
-		color: #888;
-		transition: transform 0.3s ease;
+		font-size: 0.95rem;
+		transition: opacity 0.2s ease;
+	}
+
+	.project-links a:hover {
+		opacity: 0.7;
+		text-decoration: underline;
+	}
+
+	.badges {
+		display: flex;
+		gap: 0.5rem;
+		margin-left: auto; 
+	}
+
+	.badge {
+		background: #e9ecef;
+		color: #495057;
+		padding: 0.25rem 0.65rem;
+		border-radius: 4px;
+		font-size: 0.85rem;
+		font-weight: 500;
 	}
 
 	.grid-item:hover {
@@ -179,6 +262,11 @@ Ever dreamed of flying in space or visiting a futuristic pink city? We create dr
 .social-links a:hover {
 	color: #666666; 
 }
+@media (max-width: 600px) {
+		.badges {
+			margin-left: 0; 
+		}
+	}
 @media (max-width: 768px) {
 	
 .footer-row {

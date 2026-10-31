@@ -1,0 +1,138 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+
+export async function getStaticPaths() {
+  return [
+    { 
+      params: { slug: 'pink-coding-club' }, 
+      props: { 
+        title: 'Pink Coding Club - Thoughts',
+        date: 'October 2026',
+        description: 'Reflections on building a non-profit coding camp for non-binary youth and girls through arts and fashion.'
+      } 
+    },
+    { 
+      params: { slug: 'misa-chien' }, 
+      props: { 
+        title: "Misa Chien's Personal Site - Thoughts",
+        date: 'October 2026',
+        description: 'Design choices and development notes behind building Misa Chien\'s professional web presence.'
+      } 
+    },
+    { 
+      params: { slug: 'education-philosophy' }, 
+      props: { 
+        title: "Rachel's Education Philosophy - Thoughts",
+        date: 'October 2026',
+        description: 'Exploring intertextuality and how people learn best through digital mediums.'
+      } 
+    },
+  ];
+}
+
+const { title, date, description } = Astro.props;
+---
+
+<Layout title={title}>
+  <main class="thoughts-page">
+    <div class="content-box">
+      <nav class="back-nav">
+        <a href="/">← Back to Portfolio</a>
+      </nav>
+      
+      <header class="thoughts-header">
+        <h1>{title}</h1>
+        <p class="date">{date}</p>
+      </header>
+
+      <article class="thoughts-content">
+        <p class="lead">{description}</p>
+        
+        <hr />
+
+        <h2>Why I Built This</h2>
+        <p>
+         
+        </p>
+
+        <h2>Technical Takeaways</h2>
+        <p>
+       
+        </p>
+      </article>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .thoughts-page {
+    min-height: 100vh;
+    background: #ffffff;
+    color: #111111;
+    padding: 6rem 2rem 8rem;
+  }
+
+  .content-box {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .back-nav {
+    margin-bottom: 2rem;
+  }
+
+  .back-nav a {
+    color: #3b3086;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .back-nav a:hover {
+    text-decoration: underline;
+  }
+
+  .thoughts-header {
+    margin-bottom: 3rem;
+  }
+
+  .thoughts-header h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+
+  .date {
+    color: #666;
+    font-size: 0.95rem;
+  }
+
+  .thoughts-content .lead {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 2rem;
+  }
+
+  .thoughts-content h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  .thoughts-content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 1.5rem;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #eaeaea;
+    margin: 2.5rem 0;
+  }
+</style>

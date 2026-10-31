@@ -1,41 +1,29 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 
-
 export async function getStaticPaths() {
   return [
     { 
       params: { slug: 'pink-coding-club' }, 
-      props: { 
-        title: 'Pink Coding Club - Thoughts',
-        date: 'October 2026',
-        description: 'Reflections on building a non-profit coding camp for non-binary youth and girls through arts and fashion.'
-      } 
+      props: { title: 'Pink Coding Club - Thoughts', date: 'October 2026' } 
     },
     { 
       params: { slug: 'misa-chien' }, 
-      props: { 
-        title: "Misa Chien's Personal Site - Thoughts",
-        date: 'October 2026',
-        description: 'Design choices and development notes behind building Misa Chien\'s professional web presence.'
-      } 
+      props: { title: "Misa Chien's Personal Site - Thoughts", date: 'October 2026' } 
     },
     { 
       params: { slug: 'education-philosophy' }, 
-      props: { 
-        title: "Rachel's Education Philosophy - Thoughts",
-        date: 'October 2026',
-        description: 'Exploring intertextuality and how people learn best through digital mediums.'
-      } 
+      props: { title: "Rachel's Education Philosophy - Thoughts", date: 'October 2026' } 
     },
   ];
 }
 
-const { title, date, description } = Astro.props;
+const { slug } = Astro.params;
+const { title, date } = Astro.props;
 ---
 
 <Layout title={title}>
-  <main class="thoughts-page">
+  <main class="thoughts-page" transition:animate="fade">
     <div class="content-box">
       <nav class="back-nav">
         <a href="/">← Back to Portfolio</a>
@@ -47,19 +35,85 @@ const { title, date, description } = Astro.props;
       </header>
 
       <article class="thoughts-content">
-        <p class="lead">{description}</p>
         
-        <hr />
+        <!-- ================= PINK CODING CLUB THOUGHTS ================= -->
+        {slug === 'pink-coding-club' && (
+          <>
+            <p class="lead">
+              I created Pink Coding Club (P.C.C.) for many different reasons. After hearing many personal stories where women have given up on their femininity to fit into tech spaces, I felt the need to create P.C.C., the only coding camp for young girls and non-binary youth that combines technical education with the artistic world art and fashion provides.
+            </p>
 
-        <h2>Why I Built This</h2>
-        <p>
-         
-        </p>
+            <p>
+              I was surprised by the amount of women that felt this wasn’t needed at all though. But after some research, I realized Brenda Laurel of Purple Moon faced a lot of criticism for designing video games that appealed to girls. Despite trying so hard to actually listen to young girls she received negative comments on her work. Women even thought her work was a bad influence!
+            </p>
 
-        <h2>Technical Takeaways</h2>
-        <p>
-       
-        </p>
+            <h2>So why is it so bad to be a hyper-feminine woman in technology? Why is pink the villain?</h2>
+            <p>
+              I think people believe that fun and seriousness can’t coexist. Everything has to be sterile to be taken seriously. But this also leads to the other problem–the fact that technology is apathetic and doesn’t care for the people. The lack of trauma-informed design in software is ludicrous. If a person is struggling with anorexia, their social media feed will give them fuel for their disorder because of the algorithms and exploited data. How is that ethical? But really, the lack of diverse perspectives in technology is to blame for these travesties. The hyper-feminine perspective is absolutely needed in technology.
+            </p>
+
+            <h2>From HTML to Astro</h2>
+            <p>
+              Pink Coding Club is my garden. When I was starting my non-profit, I was thinking about using Astro but haven’t ever used a framework before. It was in the back of my mind. So, I started this project with HTML, CSS, and javascript. However, as the site was growing, plain HTML was really not sustainable and maintainable. That’s when I migrated the site over to Astro and now I’m really happy with the organization! I love component based architecture because of the convenience. It made organizing my files way easier and it helps performance so much just to have certain heavier components on only the pages that need it. PCC is much more scalable now.
+            </p>
+
+            <h2>User Experience Over Flash</h2>
+            <p>
+              PCC has a very strong brand and I had a very cool javascript waterfall text effect that I felt really supported the feminine modern brand I was going for. However, I realized this effect was very sore on the eyes and not the most ideal for users and performance. I decided to remove it since it really was extra javascript for no reason and I even had issues debugging it. On IOS, it would just not work properly even with the added Webkits. User experience is super important. I don’t want to flash bang people’s eyes and my bold typography and brutalist design is already the focal point. I also <strong>DO NOT</strong> collect data at all on my site! There’s literally no way too! As you can see, the slogan is “I don’t collect data, cuz I’m not a dick!”
+            </p>
+
+            <h2>Staying Founder-Led</h2>
+            <p>
+              My branding is very much based in the language used in fashion circles. I think art and fashion brings people together and I hope that through this new perspective of coding I can help bring a new generation of girls into technology that don’t create just to become another for the assembly line–but to create to leave their positive mark on technology.
+            </p>
+            <p>
+              I appreciate all the efforts of other coding camps for girls, but the problem I have is that they tend to treat each girl as a data point and not an individual. This is why I constantly make comparisons to Henry Ford’s assembly line. It takes away from the individual when girls are so much more than a result for a coding camp. This is also why I want to stay founder-led till the end because each girl deserves a personal experience.
+            </p>
+
+            <h2>Looking Forward</h2>
+            <p>
+              I’ve been very lucky and grateful to feature the amazing artists and developers on my site. I hope that these interviews and articles inspire the young girls I teach. Perspective is really at the core of PCC and by showcasing so many different perspectives, I believe technology can change and be used for good.
+            </p>
+            <p>
+              So far, according to Cloudflare I’ve reached over ten thousand views on the website! But I hope to grow PCC into something bigger. Because of the strong branding and aesthetics I see a lot of potential for collaborations with beauty and fashion brands. It is important to educate the youth and empower them but it is difficult to do so when technical subjects are taught in a sterile manner. By appealing to young girls, I hope technology stays in their hearts and that they contribute to technology in more meaningful and empathetic ways.
+            </p>
+          </>
+        )}
+
+        <!-- ================= MISA CHIEN THOUGHTS ================= -->
+        {slug === 'misa-chien' && (
+          <>
+            <p class="lead">Design choices and development notes behind building Misa Chien's professional web presence.</p>
+            <hr />
+            <h2>How I Built This</h2>
+           
+<p>For Misa’s site, I went straight with using Astro–my personal favorite framework! I chose Astro because it was simple and easy to expand and maintain. The reason I didn’t use Hugo was because I felt Hugo was better suited for blogs or sites with a lot of content. For personal sites that have just a few pages, I think Astro is the best choice. </p>
+<p>Now at first I went way too overboard with her site. I had a pixi.js water effect, custom  swiper.js slides, typescript typewriters, and way too many GSAP (Green Shock Animation Platform) components that didn’t fit her brand at all. After talking to her brand manager, I pretty much got rid of all my code and started from scratch. They were going for clean, simple, elegant and luxurious. The type of bespoke quiet luxury like Loro Piana–while my original code was definitely not going in that direction at all. The old design and special effects were loud, which on its own is honestly super cool and I still think what I made was awesome and unique, but it just didn’t fit her brand. 
+</p>
+
+<p>
+A big lesson I learned here is buyer persona. MIsa’s audience was full of executives and leaders in their industries. I was building something somebody around my age would like! So I really learned that understanding the client’s audience is the most important as a freelance developer. Also, you’re making the product for them and not yourself! Sure, GSAP special effects and explosions are cool, but sometimes simple is better and actually I found the code much easier to maintain and expand on while doing my revisions. 
+</p>
+
+</>
+        )}
+
+        <!-- ================= EDUCATION PHILOSOPHY THOUGHTS ================= -->
+        {slug === 'education-philosophy' && (
+          <>
+            <p class="lead">Exploring intertextuality and how people learn best</p>
+            <hr />
+            <h2>Why I Built This</h2>
+           
+<p>Built with simple HTML and CSS, this is just a visual for my education philosophy which is based on the literary concept of intertextuality. Intertextuality basically says that all works are connected and a part of each other. I believe that all disciplines are connected and need each other to create new innovations, similarly to how a book may reference another and through that create its own new implications. </p>
+<p>Take the fall of Icarus for instance. Many different works of literature reference this old greek tale. From Gatsby to Kurtz from Heart of Darkness, they’re all different spins on the never flying too close to the sun. Now what is the story of calculus? Well rate of change…movement and motion. Phenomena that moves! What’s the story of psychology? The story of human behavior! And what could explain human behavior? Neurochemistry! And that discipline itself is a story and you could go deeper and look into chemistry itself. I think each discipline should be taught to be connected like this but unfortunately education is still taught in Silos. It’s very unfortunate that education is still taught like this because John Dewey and Leonardo Da Vinci already fought for interdisciplinary education, but I will still fight for my education philosophy which is viewed through intertextuality. 
+</p>
+<p>
+You can’t be a mathematician without being a poet and you cannot be a scientist without being a storyteller. Humans are natural pattern seekers and storytellers. We’ve been telling stories since the beginning of time, passing them down generation to generation, but at the same time we’ve been noticing patterns. Through these patterns we make new discoveries. Let’s say you’ve finally realized what a symbol in a certain book means and now you see that symbol everywhere contributing similar meanings across different texts–well that’s just like taking the derivatives of a natural log and seeing how to do it in many different contexts. 
+</p>
+</>
+        )}
+
       </article>
     </div>
   </main>
@@ -74,7 +128,7 @@ const { title, date, description } = Astro.props;
   }
 
   .content-box {
-    max-width: 700px;
+    max-width: 750px;
     margin: 0 auto;
   }
 
@@ -97,7 +151,7 @@ const { title, date, description } = Astro.props;
   }
 
   .thoughts-header h1 {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 400;
     letter-spacing: -0.02em;
     margin-bottom: 0.5rem;
@@ -110,29 +164,24 @@ const { title, date, description } = Astro.props;
 
   .thoughts-content .lead {
     font-size: 1.25rem;
-    line-height: 1.6;
-    color: #333;
+    line-height: 1.7;
+    color: #222;
     margin-bottom: 2rem;
   }
 
   .thoughts-content h2 {
     font-size: 1.5rem;
     font-weight: 500;
-    margin-top: 2.5rem;
+    margin-top: 3rem;
     margin-bottom: 1rem;
     letter-spacing: -0.01em;
+    color: #111;
   }
 
   .thoughts-content p {
-    font-size: 1.05rem;
-    line-height: 1.7;
+    font-size: 1.1rem;
+    line-height: 1.8;
     color: #444;
     margin-bottom: 1.5rem;
-  }
-
-  hr {
-    border: none;
-    border-top: 1px solid #eaeaea;
-    margin: 2.5rem 0;
   }
 </style>
